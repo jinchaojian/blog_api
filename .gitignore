@@ -1,0 +1,8 @@
+.idea
+composer.lock
+*.log
+
+.idea
+runtime
+tests
+phpunit.xml
