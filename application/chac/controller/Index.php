@@ -4,13 +4,13 @@ use \app\chac\model\User as User;
 
 class Index
 {
-    public function index($name)
+    public function index()
     {
 /*        $b=new \app\chac\model\user;
         $c=$b->index();*/
         $b=new user();
         $b->index();
-        $a[0]=$name;
+        $a[0]='hhhh';
         return $a[0];
     }
 }
