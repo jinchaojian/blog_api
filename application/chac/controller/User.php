@@ -33,7 +33,7 @@ class User extends Controller
                 'password'=>$password,
             ],
             [
-                'name'=>'require|max:2',
+                'name'=>'require|max:20',
                 'password'=>'require|max:35',
             ]
         );
