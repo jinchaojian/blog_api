@@ -22,7 +22,7 @@ class User extends Controller
      * @param $nickname
      * @param $password
      * @return array
-     * int data 接口返回数据 0代表注册失败，1代表注册成功
+     * int data 接口返回数据 0代表注册失败，1代表注册成功，2代表用户名已存在
      * string message 注册提示信息
      * int code
      */
@@ -51,6 +51,7 @@ class User extends Controller
         if(!$nicknameExist):
             $re=$model->reg($data);
         else:
+            $re=2;
             $message='用户名已存在';
         endif;
         $api=['code'=>200,'data'=>$re,'message'=>$message];

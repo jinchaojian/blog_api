@@ -24,7 +24,9 @@ class UserBase extends Model
 
     public function login($data){
         $user=UserBase::get(['name'=>$data['nickname']]);
-        if($user->password==$data['password']):
+        if(!$user):
+            return 0;
+        elseif($user->password==$data['password']):
             return 1;
         else:
             return 0;
