@@ -2,7 +2,7 @@
 namespace app\chac\controller;
 use app\chac\model\UserBase as Userbase;
 use \think\Controller;
-//use app\chac\common\DataFormate as DataFormate;
+
 
 session_start();
 class User extends Controller
@@ -11,12 +11,6 @@ class User extends Controller
 
     public function index()
     {
-        /*        $b=new \app\chac\model\user;
-                $c=$b->index();*/
-        // $b=new user();
-        //   $b->index();
-        $a[0]='hhhhui';
-        return $a[0];
     }
 
 
