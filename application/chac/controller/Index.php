@@ -1,6 +1,6 @@
 <?php
 namespace app\chac\controller;
-use \app\chac\model\User as User;
+//use \app\chac\model\User as User;
 
 class Index
 {
@@ -8,9 +8,12 @@ class Index
     {
 /*        $b=new \app\chac\model\user;
         $c=$b->index();*/
-        $b=new user();
-        $b->index();
+      //  $b=new user();
+      //  $b->index();
         $a[0]='hhhh';
-        return $a[0];
+        return $a;
+    }
+    public function hello(){
+        return 'hello,world';
     }
 }
