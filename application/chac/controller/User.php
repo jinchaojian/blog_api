@@ -58,6 +58,7 @@ class User extends Controller
     }
 
     /**
+     * 用户登陆接口
      * @param $nickname
      * @param $password
      * @return array
