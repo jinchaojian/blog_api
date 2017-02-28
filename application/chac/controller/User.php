@@ -4,8 +4,11 @@ use app\chac\model\UserBase as Userbase;
 use \think\Controller;
 //use app\chac\common\DataFormate as DataFormate;
 
+session_start();
 class User extends Controller
 {
+
+
     public function index()
     {
         /*        $b=new \app\chac\model\user;
@@ -44,14 +47,18 @@ class User extends Controller
             'nickname'=>$nickname,
             'password'=>$password,
         );
-        $re=0;
+        $re['uid']=0;
+        $re['code']=0;
         $message='操作完成';
         $model=new UserBase();
         $nicknameExist=$model->nicknameExist($nickname);
         if(!$nicknameExist):
             $re=$model->reg($data);
+            $_SESSION['nickname']=$nickname;
+            $_SESSION['uid']=$re['uid'];
+            $_SESSION['password']=$password;
         else:
-            $re=2;
+            $re['code']=2;
             $message='用户名已存在';
         endif;
         $api=['code'=>200,'data'=>$re,'message'=>$message];
@@ -89,6 +96,9 @@ class User extends Controller
         $re=$model->login($data);
         if($re):
             $message='登陆成功';
+            $_SESSION['nickname']=$nickname;
+            $_SESSION['uid']=$re['uid'];
+            $_SESSION['password']=$password;
         else:
             $message='用户名或密码错误';
         endif;

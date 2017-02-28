@@ -18,19 +18,26 @@ class UserBase extends Model
             'password' =>  $data['password'],
             'createTime'=>$time,
         ]);
-        $re=$user->save();
+        $re['code']=$user->save();
+        $re['uid']=$user->id;
         return $re;
     }
 
     public function login($data){
         $user=UserBase::get(['name'=>$data['nickname']]);
+        $re=array(
+            'code'=>null,
+            'uid'=>null,
+        );
         if(!$user):
-            return 0;
+            $re['code']=0;
         elseif($user->password==$data['password']):
-            return 1;
+            $re['code']=1;
+            $re['uid']=$user->id;
         else:
-            return 0;
+            $re['code']=0;
         endif;
+        return $re;
     }
 
 
