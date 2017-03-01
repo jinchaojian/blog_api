@@ -1,6 +1,6 @@
 <?php
 namespace app\chac\controller;
-use app\chac\model\UserBase as Userbase;
+use app\chac\model\UserBase as UserBase;
 use \think\Controller;
 
 
@@ -69,6 +69,9 @@ class User extends Controller
      * int code
      */
     public function login($nickname,$password){
+/*        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        header('Access-Control-Allow-Methods: GET, POST, PUT');*/
         $result=$this->validate(
             [
                 'name'=>$nickname,
@@ -88,7 +91,7 @@ class User extends Controller
         );
         $model=new UserBase();
         $re=$model->login($data);
-        if($re):
+        if($re['code']):
             $message='登陆成功';
             $_SESSION['nickname']=$nickname;
             $_SESSION['uid']=$re['uid'];
@@ -99,4 +102,14 @@ class User extends Controller
         $api=['code'=>200,'data'=>$re,'message'=>$message];
         return $api;
     }
+
+
+
+
+
+
+
+
+
+
 }

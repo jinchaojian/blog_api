@@ -14,6 +14,7 @@ class Index
         return $a;
     }
     public function hello(){
-        return 'hello,world';
+        $a['0']='hello,word!';
+        return $a;
     }
 }
