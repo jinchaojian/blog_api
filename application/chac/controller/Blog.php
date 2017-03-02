@@ -21,8 +21,14 @@ class Blog extends Controller
         $blog=new BlogBase();
         $re=$blog->publish($data);
         return $re;
-
-
     }
+
+    public function getIndexBlog(){
+        $blog=new BlogBase();
+        $re=$blog->getIndexBlog();
+        return $re;
+    }
+
+
 
 }

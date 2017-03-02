@@ -2,6 +2,7 @@
 
 namespace app\chac\model;
 use think\Model;
+use think\DB;
 
 class BlogBase extends Model
 {
@@ -14,6 +15,12 @@ class BlogBase extends Model
             'create_time'=>$time
         ]);
         $blog->save();
+    }
+
+    public function getIndexBlog(){
+        $data=Db::table('blog_base')->where('id',1)->find();
+        print_r($data);
+        return  $data;
     }
 
 }
