@@ -1,8 +1,7 @@
 <?php
 
-
 namespace app\chac\controller;
-use app\chac\model\BlogBase as BlogBase;
+use app\chac\model\Blog as BlogModel;
 use \think\Controller;
 
 session_start();
@@ -18,13 +17,13 @@ class Blog extends Controller
         if(!$data['uid']){
             return $api=['code'=>401,'data'=>$re,'message'=>'未登录'];
         }
-        $blog=new BlogBase();
+        $blog=new BlogModel();
         $re=$blog->publish($data);
         return $re;
     }
 
     public function getIndexBlog(){
-        $blog=new BlogBase();
+        $blog=new BlogModel();
         $re=$blog->getIndexBlog();
         return $re;
     }

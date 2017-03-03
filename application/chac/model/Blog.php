@@ -4,11 +4,11 @@ namespace app\chac\model;
 use think\Model;
 use think\DB;
 
-class BlogBase extends Model
+class Blog extends Model
 {
     public function publish($data){
         $time = date('Y-m-d H:i:s',time());
-        $blog=new BlogBase([
+        $blog=new Blog([
             'user_base_id'=>$data['uid'],
             'title'=>$data['title'],
             'content'=>$data['content'],
@@ -18,7 +18,7 @@ class BlogBase extends Model
     }
 
     public function getIndexBlog(){
-        $data=Db::table('blog_base')->where('id',1)->find();
+        $data=Db::table('blog')->where('id',1)->find();
         print_r($data);
         return  $data;
     }

@@ -1,6 +1,6 @@
 <?php
 namespace app\chac\controller;
-use app\chac\model\UserBase as UserBase;
+use app\chac\model\User as UserModel;
 use \think\Controller;
 
 
@@ -26,16 +26,16 @@ class User extends Controller
     public function reg($nickname,$password){
         $result=$this->validate(
             [
-                'name'=>$nickname,
+                'nickname'=>$nickname,
                 'password'=>$password,
             ],
             [
-                'name'=>'require|max:20',
+                'nickname'=>'require|max:20',
                 'password'=>'require|max:35',
             ]
         );
         if(true!==$result):
-            return ['code'=>200,'data'=>null,'message'=>'用户名或密码格式错误'];
+            return ['ret'=>200,'data'=>null,'message'=>'用户名或密码格式错误'];
         endif;
         $data=array(
             'nickname'=>$nickname,
@@ -44,7 +44,7 @@ class User extends Controller
         $re['uid']=0;
         $re['code']=0;
         $message='操作完成';
-        $model=new UserBase();
+        $model=new UserModel();
         $nicknameExist=$model->nicknameExist($nickname);
         if(!$nicknameExist):
             $re=$model->reg($data);
@@ -55,7 +55,7 @@ class User extends Controller
             $re['code']=2;
             $message='用户名已存在';
         endif;
-        $api=['code'=>200,'data'=>$re,'message'=>$message];
+        $api=['ret'=>200,'data'=>$re,'message'=>$message];
         return $api;
     }
 
@@ -74,22 +74,22 @@ class User extends Controller
         header('Access-Control-Allow-Methods: GET, POST, PUT');*/
         $result=$this->validate(
             [
-                'name'=>$nickname,
+                'nickname'=>$nickname,
                 'password'=>$password,
             ],
             [
-                'name'=>'require|max:20',
+                'nickname'=>'require|max:20',
                 'password'=>'require|max:35',
             ]
         );
         if(true!==$result):
-            return ['code'=>200,'data'=>null,'message'=>'用户名或密码格式错误'];
+            return ['ret'=>200,'data'=>null,'message'=>'用户名或密码格式错误'];
         endif;
         $data=array(
             'nickname'=>$nickname,
             'password'=>$password,
         );
-        $model=new UserBase();
+        $model=new UserModel();
         $re=$model->login($data);
         if($re['code']):
             $message='登陆成功';
@@ -99,7 +99,7 @@ class User extends Controller
         else:
             $message='用户名或密码错误';
         endif;
-        $api=['code'=>200,'data'=>$re,'message'=>$message];
+        $api=['ret'=>200,'data'=>$re,'message'=>$message];
         return $api;
     }
 
