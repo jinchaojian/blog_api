@@ -22,10 +22,13 @@ class Blog extends Controller
         return $re;
     }
 
-    public function getIndexBlog(){
+    public function getIndexBlog($pn=null){
         $blog=new BlogModel();
-        $re=$blog->getIndexBlog();
-        return $re;
+        $content=$blog->getIndexBlog($pn);
+        $num=count($content);
+        $re['blogs']=$content;
+        $re['num']=$num;
+        return $api=['ret'=>200,'data'=>$re,'message'=>null];
     }
 
 
